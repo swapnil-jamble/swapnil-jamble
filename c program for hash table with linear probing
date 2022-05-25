@@ -1,0 +1,85 @@
+  //IMPLEMENTATION OF STATIC HASH TABLE WITH LINEAR PROBING:
+
+#include<stdio.h>
+ int hf(int key,int i)
+  {
+      return (key%10+1)%10;
+  }
+
+ int insert(int HT[10],int key)
+  {
+    int i,index;
+    for(i=0;i<10;i++)
+      {
+          index=hf(key,i);
+          if(HT[index]==-1)
+            {
+                HT[index]=key;
+                 return;
+            }
+      }
+      printf("\nOhh.. Could not insert key %d",key);
+  }
+
+ int search(int HT[10],int key)
+  {
+    int i,index;
+     for(i=0;i<10;i++)
+       {
+           index=hf(key,i);
+            if(HT[index]==key)
+              return index;
+       }
+       return -1;
+  }
+
+ int deletekey(int HT[10],int key)
+  {
+      int index;
+      index=search(HT,key);
+       if(index==-1)
+          printf("\n %d key not found!");
+       else
+          HT[index]=-1;    
+  }
+
+ int showtable(int HT[10])
+  {
+    int i;
+     for(i=0;i<10;i++)
+       printf("%d[%d]\n",i,HT[i]);
+  }
+  
+  int main()
+  {
+    int HT[10],choice,key,index,i;
+     for(i=0;i<10;i++)
+       HT[i]=-1;
+       do
+        {
+          printf("\n1:insert\n2:search\n3:delete");
+          printf("\nenter ur choice:");
+          scanf("%d",&choice);
+            switch(choice)
+             {
+                case 1:printf("hey..plz enter the key to be inserted:");
+                       scanf("%d",&key);
+                       insert(HT,key);
+                       showtable(HT);
+                       break;
+                case 2:printf("plz..enter the key to be search:");
+                       scanf("%d",&key);
+                       index=search(HT,key);
+                         if(index==-1)
+                           printf("\nohh sorry %d not found",key);
+                         else
+                           printf("Yes %d is found at position %d",key,index);
+                       break;
+                case 3:printf("\nhey..plz enter the key to be deleted:");
+                       scanf("%d",key);
+                       deletekey(HT,key);
+                       showtable(HT);
+                       break;
+             }
+        }while(choice!=0);
+  }
