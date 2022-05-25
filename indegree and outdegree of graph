@@ -1,0 +1,32 @@
+//indegree and outdegree
+#include<stdio.h>
+ int main()
+  {
+    int a[10][10],n,j,i,out=0,in=0;
+    printf("Enter the How many vertex:");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+     {
+      for(j=0;j<n;j++)
+        {
+          a[i][j]=0;
+           if(i!=j)
+             {
+               printf("Is there Edge between %d and %d (1/0):",i+1,j+1);
+               scanf("%d",&a[i][j]);
+             }
+        }
+     }
+   printf("vertex indegree outdegree \n");
+    for(i=0;i<n;i++)
+     {
+       in=out=0;
+        for(j=0;j<n;j++)
+          {
+            in=in+a[j][i];
+            out=out+a[i][j];
+          }
+      printf("%4d\t%4d\t%4d",i+1,in,out);
+      printf("\n");
+     }
+ }
