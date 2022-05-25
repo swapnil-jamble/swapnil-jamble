@@ -1,0 +1,21 @@
+#include<stdio.h>
+ void dfs(int m[4][4],int n,int v)
+  {
+      int w;
+      static int visited[20]={0};
+      visited[v]=1;
+      printf("\tv%d",v+1);
+       for(w=0;w<n;w++)
+         {
+          if((m[v][w]==1) && (visited[w]==0))
+              dfs(m,n,w);
+         }
+  }        
+ int main()
+ {
+    int m[4][4]={{0,0,0,1},
+              {0,0,1,0},
+              {0,0,0,1},
+              {1,1,0,0}};
+    dfs(m,4,0);
+ }
