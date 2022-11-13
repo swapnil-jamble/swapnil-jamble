@@ -1,0 +1,93 @@
+<HTML>
+<HEAD>
+    <TITLE> Add/Remove dynamic rows in HTML table </TITLE>
+    <style type="text/css">
+        .democlass{
+            color:red;
+        }
+    </style>
+    <SCRIPT language="javascript">
+
+   function cube()
+ {
+   var a,Cube;
+   a = parseInt(document.getElementById ("text").value);
+
+   Cube = a*a*a;
+
+   return document.getElementById ("num1").innerHTML =Cube;
+
+  }
+
+   
+        
+        function addRow(tableID) {
+
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+            var colCount = table.rows[0].cells.length;
+
+            var row = table.insertRow(rowCount);
+            for(var i = 0; i < colCount; i++) {
+                var newcell = row.insertCell(i);
+                newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+            }
+
+            row = table.insertRow(table.rows.length);
+            for(var i = 0; i < colCount; i++) {
+                var newcell = row.insertCell(i);
+                newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+            }
+
+            row = table.insertRow(table.rows.length);
+            for(var i = 0; i < colCount; i++) {
+                var newcell = row.insertCell(i);
+                newcell.innerHTML = table.rows[2].cells[i].innerHTML;
+            }
+
+            row = table.insertRow(table.rows.length);
+            for(var i = 0; i < colCount; i++) {
+
+                var newcell = row.insertCell(i);
+                if(i == (colCount - 1)) {
+                    newcell.innerHTML = "<INPUT type=\"button\" value=\"Delete Row\" onclick=\"removeRow(this)\"/>";
+                } else {
+                    newcell.innerHTML = table.rows[3].cells[i].innerHTML;
+                }
+            }
+        }
+
+        
+    </SCRIPT>
+
+
+</HEAD>
+<BODY>
+    <form name="myForm">
+        <TABLE id="dataTable" width="350px" border="1">
+            <tr> <th> Enter number </th> <th> Cal. cube </th>  <th> Ans </th> </tr>
+   <tr>
+   <td> <input type="text" name="text" id="text" placeholder="Enter a number"> </td>
+
+   <!-- <td> <button onclick=cube()> Submit</button> </td>   -->
+   <td>
+  <INPUT type="button" value="clk" onclick="cube()" />
+                
+   </td>
+
+
+   <td>   <div id="num1"></div>  </td>
+
+  </tr>
+
+           <tfoot>
+             <tr>
+               
+                    <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" />
+                
+            </tr>
+            </tfoot>
+        </TABLE>
+
+</BODY>
+</HTML>
